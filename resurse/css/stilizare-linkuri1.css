@@ -1,0 +1,64 @@
+/* stilizare-linkuri.css */
+
+/* Linkurile vizitate vor avea o culoare diferită, setată printr-o variabilă CSS */
+:root {
+    --culoare-link-vizitat: #544efa; /* Folosesc o culoare din schema de culori existentă */
+    --culoare-primara: #FA342D;
+    --culoare-secundara: #F9B556;
+}
+
+/* Stilizare generală pentru toate linkurile */
+a {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Linkurile vizitate vor avea o culoare diferită */
+a:visited {
+    color: var(--culoare-link-vizitat);
+}
+
+/* Linkurile externe vor avea generat cu ajutorul unui pseudoelement ::before cu simbolul ↗ 
+   cu font-size cu 50% mai mare față de dimensiunea fontului linkului */
+a[href^="http"]::before {
+    content: "⮳";
+    margin-right: 3px;
+    font-size: 150%; /* 50% mai mare decât textul linkului */
+    line-height: 0;
+    position: relative;
+    top: 2px;
+}
+
+/* La aducerea cursorului pe un link extern, simbolul își va schimba culoarea */
+a[href^="http"]:hover::before {
+    color: var(--culoare-primara);
+}
+
+/* La aducerea cursorului pe un link din conținutul paginii (nu din meniu) */
+main a:hover {
+    /* O pată de culoare va crește din centru - implementată ca background cu gradient radial */
+    background: radial-gradient(
+        circle at center,
+        var(--culoare-primara) 0%,
+        var(--culoare-primara) 40%,
+        transparent 80%,
+        transparent 100%
+    );
+    background-position: center;
+    background-size: 0;
+    /* Tranziție pentru efectul de creștere a petei de culoare */
+    transition: background-size 0.4s ease;
+}
+
+/* La hover, imaginea de background crește la 100% */
+main a:hover {
+    background-size: 100% 100%;
+    color: white; /* Schimbă culoarea textului pentru contrast */
+}
+
+/* La click pe un link din pagină (:active), va apărea un border în jurul lui */
+a:active {
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 0 3px;
+}

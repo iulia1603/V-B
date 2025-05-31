@@ -1,0 +1,116 @@
+/* Stilizare linkuri pentru Vinyl & Beats */
+
+:root {
+    /* Preluăm variabilele din general.css pentru consistență */
+    --culoare-primara: #FA342D;
+    --culoare-secundara: #F9B556;
+    --culoare-accent: #FA844E;
+    --culoare-fundal: #F9E5AC;
+    --culoare-text: #333333;
+    --culoare-zona1: #FFF8E1;
+    --culoare-zona2: #FFF3E0;
+    --alb: white;
+    
+    /* Variabile specifice pentru linkuri */
+    --culoare-link: var(--culoare-primara);
+    --culoare-link-vizitat: var(--culoare-accent);
+    --culoare-link-hover: var(--culoare-accent);
+    --culoare-symbol-hover: var(--culoare-primara);
+}
+
+/* Stiluri de bază pentru toate linkurile */
+a {
+    color: var(--culoare-link);
+    text-decoration: none;
+    transition: color 0.3s ease, background-size 0.5s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+/* Linkuri vizitate - setăm o culoare diferită */
+a:visited {
+    color: var(--culoare-link-vizitat);
+}
+
+/* Efect la hover pe toate linkurile */
+a:hover {
+    color: var(--culoare-link-hover);
+}
+
+/* Stiluri speciale pentru linkurile externe */
+a[href^="http"] {
+    position: relative;
+    padding-left: 1.5em; /* Spațiu pentru simbol */
+}
+
+/* Simbolul pentru linkurile externe */
+a[href^="http"]::before {
+    content: "⮳";
+    position: absolute;
+    left: 0;
+    font-size: 150%; /* Cu 50% mai mare decât textul linkului */
+    vertical-align: middle;
+    transition: color 0.3s ease;
+    color: var(--culoare-link);
+}
+
+/* Schimbarea culorii simbolului la hover */
+a[href^="http"]:hover::before {
+    color: var(--culoare-symbol-hover);
+}
+
+/* Efect de expandare pentru linkurile din conținutul principal (main) */
+main a:not([class]) {
+    position: relative;
+    background-image: radial-gradient(
+        circle, 
+        var(--culoare-secundara) 0%, 
+        var(--culoare-secundara) 40%, 
+        transparent 80%, 
+        transparent 100%
+    );
+    background-position: center;
+    background-size: 0; /* Inițial nu se vede */
+    background-repeat: no-repeat;
+    transition: background-size 0.5s ease;
+    z-index: 1;
+}
+
+/* Pata de culoare crește la hover */
+main a:not([class]):hover {
+    background-size: 100%;
+}
+
+/* Border la click pe link (:active) */
+main a:active {
+    border: 2px solid var(--culoare-primara);
+    border-radius: 4px;
+    padding: 0 2px;
+}
+
+/* Excepții pentru linkuri speciale (buton back-to-top, meniuri, etc.) */
+.back-to-top,
+nav a,
+.buton-eroare {
+    background-image: none !important;
+}
+
+/* Asigurăm că linkurile din footer păstrează stilul */
+footer a {
+    color: var(--culoare-primara);
+}
+
+footer a:hover {
+    color: var(--culoare-accent);
+}
+
+/* Animație subtilă pentru tranzițiile linkurilor */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+main a:not([class]):active {
+    animation: pulse 0.3s ease;
+}

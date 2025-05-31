@@ -1,0 +1,285 @@
+/* Stiluri pentru pagina de eroare - Vinyl & Beats */
+:root {
+    /* Păstrăm aceleași variabile ca și în general.css pentru consistență */
+    --culoare-primara: #FA342D;
+    --culoare-secundara: #F9B556;
+    --culoare-fundal: #F9E5AC;
+    --culoare-text: #333333;
+    --culoare-accent: #FA844E;
+    --culoare-zona1: #FFF8E1;
+    --culoare-zona2: #FFF3E0;
+    --alb: white;
+    --raza-border: 10px;
+    --umbra-normala: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --umbra-mare: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --font-titlu: 'Poppins', sans-serif;
+    --font-text: 'Montserrat', sans-serif;
+    --spatiu-md: 1.5rem;
+    --spatiu-lg: 2rem;
+    --spatiu-xl: 3rem;
+}
+
+/* Stiluri pentru pagina de eroare */
+.eroare-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spatiu-lg) var(--spatiu-md);
+    position: relative;
+}
+
+/* Stiluri pentru lista de sugestii */
+.eroare-sugestii {
+    width: 100%;
+    margin-top: var(--spatiu-lg);
+    background-color: var(--culoare-zona1);
+    border-radius: var(--raza-border);
+    padding: var(--spatiu-md);
+    border: 2px solid var(--culoare-secundara);
+    box-shadow: var(--umbra-normala);
+}
+
+.eroare-sugestii h3 {
+    color: var(--culoare-accent);
+    font-family: var(--font-titlu);
+    font-size: 1.3rem;
+    margin-bottom: var(--spatiu-md);
+    text-align: center;
+}
+
+.eroare-link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spatiu-md);
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+
+.eroare-link-list li {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.eroare-link-list a {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    background-color: var(--alb);
+    color: var(--culoare-primara);
+    text-decoration: none;
+    border-radius: var(--raza-border);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: var(--umbra-normala);
+}
+
+.eroare-link-list a:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--umbra-mare);
+    background-color: var(--culoare-primara);
+    color: var(--alb);
+}
+
+.eroare-link-list i {
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.eroare-titlu {
+    text-align: center;
+    margin-bottom: var(--spatiu-md);
+    width: 100%;
+    color: var(--culoare-primara);
+    font-family: var(--font-titlu);
+    font-size: 2.5rem;
+    position: relative;
+}
+
+.eroare-titlu::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, var(--culoare-primara), var(--culoare-secundara));
+    border-radius: 2px;
+}
+
+.eroare-continut {
+    display: flex;
+    width: 100%;
+    gap: var(--spatiu-lg);
+    padding: var(--spatiu-lg);
+    background-color: var(--alb);
+    border-radius: var(--raza-border);
+    box-shadow: var(--umbra-normala);
+    border: 2px solid var(--culoare-secundara);
+    margin-top: var(--spatiu-lg);
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.eroare-continut:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--umbra-mare);
+}
+
+.eroare-imagine {
+    flex: 1;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eroare-imagine img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--raza-border);
+    box-shadow: var(--umbra-normala);
+}
+
+.eroare-text {
+    flex: 2;
+    font-family: var(--font-text);
+}
+
+.eroare-text h2 {
+    color: var(--culoare-accent);
+    font-family: var(--font-titlu);
+    font-size: 1.8rem;
+    margin-bottom: var(--spatiu-md);
+}
+
+.eroare-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--culoare-text);
+    margin-bottom: var(--spatiu-md);
+}
+
+.eroare-actiuni {
+    display: flex;
+    gap: var(--spatiu-md);
+    margin-top: var(--spatiu-lg);
+}
+
+.buton-eroare {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--culoare-primara);
+    color: var(--alb);
+    border-radius: var(--raza-border);
+    text-decoration: none;
+    font-family: var(--font-titlu);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.buton-eroare:hover {
+    background-color: var(--culoare-accent);
+    transform: translateY(-3px);
+    box-shadow: var(--umbra-normala);
+    text-decoration: none;
+    color: var(--alb);
+}
+
+.buton-secundar {
+    background-color: transparent;
+    color: var(--culoare-primara);
+    border: 2px solid var(--culoare-primara);
+}
+
+.buton-secundar:hover {
+    background-color: transparent;
+    color: var(--culoare-accent);
+    border-color: var(--culoare-accent);
+}
+
+.eroare-icon {
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.eroare-cod {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(249, 181, 86, 0.2);
+    font-family: var(--font-titlu);
+    z-index: -1;
+}
+
+
+
+/* Media queries pentru responsivitate */
+@media screen and (max-width: 768px) {
+    .eroare-continut {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .eroare-imagine {
+        max-width: 200px;
+        margin-bottom: var(--spatiu-md);
+    }
+
+    .eroare-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .eroare-text p {
+        font-size: 1rem;
+    }
+
+    .eroare-actiuni {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .buton-eroare {
+        width: 100%;
+        text-align: center;
+    }
+
+    .eroare-cod {
+        font-size: 3rem;
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-bottom: var(--spatiu-md);
+        opacity: 0.3;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .eroare-titlu {
+        font-size: 1.8rem;
+    }
+
+    .eroare-imagine {
+        max-width: 150px;
+    }
+
+    .eroare-text h2 {
+        font-size: 1.3rem;
+    }
+
+    .eroare-text p {
+        font-size: 0.9rem;
+    }
+
+    .eroare-cod {
+        font-size: 2rem;
+    }
+}

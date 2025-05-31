@@ -1,0 +1,291 @@
+/* Stiluri pentru pagina Despre noi - adaptat pentru a folosi aceleași margini ca index.html */
+:root {
+    /* Sistem de spatiere */
+    --spatiu-baza: 1rem;
+    --spatiu-xs: calc(var(--spatiu-baza) * 0.5);  /* 0.5rem */
+    --spatiu-sm: var(--spatiu-baza);              /* 1rem */
+    --spatiu-md: calc(var(--spatiu-baza) * 1.5);  /* 1.5rem */
+    --spatiu-lg: calc(var(--spatiu-baza) * 2);    /* 2rem */
+    --spatiu-xl: calc(var(--spatiu-baza) * 3);    /* 3rem */
+    
+    /* Spatiere pentru layout */
+    --margini-pagina: 8%;
+    --margini-pagina-tablet: 5%;
+    --margini-pagina-mobil: 3%;
+    --spatiu-grid: var(--spatiu-md);
+    --spatiu-grid-tablet: var(--spatiu-sm);
+    --spatiu-grid-mobil: var(--spatiu-xs);
+    --padding-zona: var(--spatiu-lg);
+    --padding-zona-tablet: var(--spatiu-md);
+    --padding-zona-mobil: var(--spatiu-sm);
+    
+    /* Fonturi */
+    --font-titlu: 'Poppins', sans-serif;
+    --font-text: 'Montserrat', sans-serif;
+    --font-marime-baza: 1rem;
+    --font-mic: calc(var(--font-marime-baza) * 0.85);
+    --font-normal: var(--font-marime-baza);
+    --font-mediu: calc(var(--font-marime-baza) * 1.25);
+    --font-mare: calc(var(--font-marime-baza) * 1.5);
+    --font-xl: calc(var(--font-marime-baza) * 2);
+    
+    /* Culori */
+    --culoare-primara: #FA342D;
+    --culoare-secundara: #F9B556;
+    --culoare-fundal: #F9E5AC;
+    --culoare-text: #333333;
+    --culoare-accent: #FA844E;
+    --culoare-zona1: #FFF8E1;
+    --culoare-zona2: #FFF3E0;
+    --culoare-footer: #F5E6CA;
+    --alb: white;
+    --status-online: green; 
+    --culoare-border: #eee; 
+    --background: rgba(0, 0, 0, 0.15);
+    --background2: rgba(249, 181, 86, 0.3);
+    --culoare1: #777;
+    --culoare2: #ccc;
+    --border: #ddd; 
+    --iframe1: #a2e1e1;
+    --iframe2: #2a8a8a;
+    --iframe3: #d5f7f7;
+    --iframe4: #4da6a6;
+    
+    /* Borduri si umbre */
+    --raza-border: 10px;
+    --umbra-normala: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --umbra-mare: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+html {
+    font-size: var(--font-marime-baza);
+    font-family: var(--font-text);
+    transition: font-size 0.3s ease-in-out;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
+}
+
+.page-container {
+    padding-left: var(--margini-pagina);
+    padding-right: var(--margini-pagina);
+    max-width: 100%;
+    margin: 0 auto;
+    transition: padding 0.3s ease-in-out;
+}
+
+.despre-main {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: var(--culoare-fundal);
+    text-align: center;
+    max-width: 1200px;
+}
+
+/* Layout grid similar cu index.html, dar cu o singură zonă principală */
+#grid-pagina {
+    display: grid;
+    gap: var(--spatiu-grid);
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "header"
+        "zona-despre"
+        "footer";
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
+    transition: gap 0.3s ease-in-out;
+}
+
+header, .despre-noi {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; /* Important pentru a include padding și border în lățime */
+}
+
+header {
+    grid-area: header;
+    padding: var(--padding-zona);
+    border: 2px solid var(--culoare-primara);
+    background-color: var(--alb);
+    border-radius: var(--raza-border);
+    box-shadow: var(--umbra-normala);
+} 
+
+.despre-noi {
+    grid-area: zona-despre;
+    padding: var(--padding-zona);
+    border: 2px solid var(--culoare-secundara);
+    background-color: var(--culoare-zona1);
+    border-radius: var(--raza-border);
+    box-shadow: var(--umbra-normala);
+    /* Elimină orice proprietate width dacă există */
+    max-width: 100%; /* Adaugă această linie */
+}
+
+
+footer {
+    grid-area: footer;
+    padding: var(--padding-zona);
+    border: 2px solid var(--culoare-primara);
+    background-color: var(--culoare-footer);
+    border-radius: var(--raza-border);
+    box-shadow: var(--umbra-normala);
+}
+
+.despre-article {
+    margin-bottom: 3rem;
+    padding: 2.5rem;
+    background-color: var(--alb);
+    border-radius: var(--raza-border);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    border: 2px solid var(--culoare-secundara);
+}
+
+.despre-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.despre-text {
+    flex: 1;
+    min-width: 300px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.despre-figure {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.despre-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--raza-border);
+    box-shadow: var(--umbra-normala);
+}
+
+.despre-figure figcaption {
+    margin-top: var(--spatiu-xs);
+    font-style: italic;
+    font-size: var(--font-mic);
+    color: var(--culoare1);
+    text-align: center;
+}
+
+.mission-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.mission-list li {
+    margin-bottom: var(--spatiu-sm);
+    display: flex;
+    align-items: center;
+}
+
+.mission-list li i {
+    color: var(--culoare-primara);
+    margin-right: var(--spatiu-xs);
+}
+
+.contact-section, .location-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.contact-info, .program-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.program-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--spatiu-sm);
+}
+
+.program-table td {
+    padding: var(--spatiu-xs) 0;
+    border-bottom: 1px solid var(--culoare-border);
+}
+
+.program-table td:first-child {
+    font-weight: bold;
+    width: 40%;
+}
+
+.map-container {
+    width: 100%;
+    margin-top: var(--spatiu-md);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: var(--raza-border);
+    box-shadow: var(--umbra-normala);
+}
+
+/* Media queries pentru ecrane mai mici */
+
+@media screen and (max-width: 768px) {
+    .despre-noi {
+        padding: var(--padding-zona-tablet);
+    }
+    
+    .despre-article {
+        padding: 1.5rem;
+    }
+    
+    .contact-section, .location-section {
+        flex-direction: column;
+    }
+    
+    .map-container iframe {
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .despre-noi {
+        padding: var(--padding-zona-mobil);
+    }
+    
+    .despre-article {
+        padding: 1rem;
+    }
+    
+    .map-container iframe {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 1200px), 
+       screen and (max-width: 768px), 
+       screen and (max-width: 480px) {
+    .despre-noi {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Asigură-te că body și alte elemente au aceleași proprietăți ca în index */
+

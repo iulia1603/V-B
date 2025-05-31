@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="keywords" content="bazar muzica, promotii inregistrari, inregistrari, muzica, cd, vinil, caseta">
+        <meta name="description" content="Bazar online de muzica. Cumpara viniluri si echipamente audio pentru pasionati si profesionisti.">
+        <title>V&B - Eroare <%= locals.titlu %></title>
+        <link rel="stylesheet" type="text/css" href="/resurse/css/eroare.css">
+        <%- include("../fragmente/head.ejs") %> 
+    </head>
+    <body>
+        <%- include("../fragmente/header.ejs") %> 
+
+        <main>
+            <div class="eroare-fundal"></div>
+            
+            <div class="eroare-container">
+                <h1 class="eroare-titlu">Oops! S-a produs o eroare</h1>
+                
+                <div class="eroare-continut">
+                    <% let codEroare = "404"; %>
+                    <% if (locals.titlu && locals.titlu.includes("404")) { codEroare = "404"; } %>
+                    <% if (locals.titlu && locals.titlu.includes("403")) { codEroare = "403"; } %>
+                    <% if (locals.titlu && locals.titlu.includes("500")) { codEroare = "500"; } %>
+                    
+                    <div class="eroare-cod"><%= codEroare %></div>
+                    
+                    <div class="eroare-imagine">
+                        <img src="<%= locals.imagine %>" alt="Imagine eroare">
+                    </div>
+                    
+                    <div class="eroare-text">
+                        <h2><%= locals.titlu %></h2>
+                        <p><%= locals.text %></p>
+                        
+                        <div class="eroare-actiuni">
+                            <a href="/" class="buton-eroare">
+                                <span class="eroare-icon"><i class="fas fa-home"></i></span>
+                                Înapoi la pagina principală
+                            </a>
+                            
+                            <a href="/despre#contact" class="buton-eroare buton-secundar">
+                                <span class="eroare-icon"><i class="fas fa-headphones"></i></span>
+                                Contactează-ne
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <% if (codEroare === "404") { %>
+                <div class="eroare-sugestii">
+                    <h3>Poate te interesează:</h3>
+                    <ul class="eroare-link-list">
+                        <li><a href="/#viniluri"><i class="fas fa-record-vinyl"></i> Colecția noastră de viniluri</a></li>
+                        <li><a href="/#cd-uri"><i class="fas fa-compact-disc"></i> Ultimele CD-uri sosite</a></li>
+                        <li><a href="/#echipamente_audio"><i class="fas fa-sliders"></i> Echipamente audio premium</a></li>
+                    </ul>
+                </div>
+                <% } %>
+            </div>
+        </main>
+        
+        <%- include("../fragmente/footer.ejs") %> 
+    </body>
+</html>
