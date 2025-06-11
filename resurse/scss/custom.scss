@@ -1,0 +1,518 @@
+// ========== VINYL & BEATS - BOOTSTRAP CUSTOMIZAT ========== 
+// Fișierul custom.scss care va fi compilat automat în custom.css
+
+// ========== IMPORT BOOTSTRAP VIA CDN PRIN CSS ========== 
+// Importăm Bootstrap de la CDN pentru că nu avem Bootstrap instalat local
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+
+// ========== CULORILE ORIGINALE V&B ========== 
+$culoare-primara: #FA342D;
+$culoare-secundara: #F9B556;
+$culoare-fundal: #F9E5AC;
+$culoare-text: #333333;
+$culoare-accent: #FA844E;
+$culoare-zona1: #FFF8E1;
+$culoare-zona2: #FFF3E0;
+$alb: white;
+$gri-deschis: #f8f9fa;
+$gri-mediu: #6c757d;
+
+// ========== SUPRASCRIEREA CULORILOR BOOTSTRAP ========== 
+
+// Redefinim culorile principale Bootstrap prin CSS custom properties și clase
+:root {
+  --bs-primary: #{$culoare-primara};
+  --bs-secondary: #{$culoare-secundara};
+  --bs-success: #28a745;
+  --bs-info: #{$culoare-accent};
+  --bs-warning: #{$culoare-secundara};
+  --bs-danger: #{$culoare-primara};
+  --bs-light: #{$culoare-zona1};
+  --bs-dark: #{$culoare-text};
+  
+  // Font custom
+  --bs-font-sans-serif: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-heading-font-family: 'Poppins', Georgia, serif;
+  
+  // Background și text
+  --bs-body-bg: #{$culoare-fundal};
+  --bs-body-color: #{$culoare-text};
+  
+  // Dimensiuni border radius customizate
+  --bs-border-radius: 12px;
+  --bs-border-radius-sm: 8px;
+  --bs-border-radius-lg: 16px;
+  --bs-border-radius-xl: 20px;
+  
+  // Dimensiuni heading customizate
+  --bs-h1-font-size: 2.5rem;
+  --bs-h2-font-size: 2rem;
+  --bs-h3-font-size: 1.65rem;
+  --bs-h4-font-size: 1.35rem;
+  --bs-h5-font-size: 1.15rem;
+  --bs-h6-font-size: 1rem;
+  
+  // Spațiere customizată
+  --bs-spacer: 1.2rem;
+}
+
+// ========== DIMENSIUNI DE ECRAN CUSTOMIZATE ========== 
+// Definim breakpoint-uri custom prin mixins SCSS
+
+@mixin media-md-custom {
+  @media (min-width: 820px) { @content; } // Modificat de la 768px
+}
+
+@mixin media-lg-custom {
+  @media (min-width: 1100px) { @content; } // Modificat de la 992px
+}
+
+@mixin media-xl-custom {
+  @media (min-width: 1400px) { @content; } // Modificat de la 1200px
+}
+
+// ========== SUPRASCRIEREA CLASELOR BOOTSTRAP ========== 
+
+// Culorile de background pentru temele noastre
+.bg-primary {
+  background-color: $culoare-primara !important;
+}
+
+.bg-secondary {
+  background-color: $culoare-secundara !important;
+}
+
+.bg-info {
+  background-color: $culoare-accent !important;
+}
+
+.bg-light {
+  background-color: $culoare-zona1 !important;
+}
+
+// Culorile de text (font)
+.text-primary {
+  color: $culoare-primara !important;
+}
+
+.text-secondary {
+  color: $culoare-secundara !important;
+}
+
+.text-info {
+  color: $culoare-accent !important;
+}
+
+// Butoanele customizate
+.btn-primary {
+  background-color: $culoare-primara;
+  border-color: $culoare-primara;
+  color: $alb;
+  font-weight: 600;
+  
+  &:hover {
+    background-color: darken($culoare-primara, 10%);
+    border-color: darken($culoare-primara, 10%);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba($culoare-primara, 0.25);
+  }
+}
+
+.btn-secondary {
+  background-color: $culoare-secundara;
+  border-color: $culoare-secundara;
+  color: $culoare-text;
+  font-weight: 500;
+  
+  &:hover {
+    background-color: darken($culoare-secundara, 15%);
+    border-color: darken($culoare-secundara, 15%);
+    color: $alb;
+  }
+}
+
+.btn-info {
+  background-color: $culoare-accent;
+  border-color: $culoare-accent;
+  color: $alb;
+  
+  &:hover {
+    background-color: darken($culoare-accent, 10%);
+    border-color: darken($culoare-accent, 10%);
+  }
+}
+
+// ========== DIMENSIUNEA LITERELOR HEADINGURILOR ========== 
+h1, .h1 {
+  font-size: 2.5rem !important;
+  font-family: 'Poppins', serif !important;
+  font-weight: 700 !important;
+  color: $culoare-primara;
+}
+
+h2, .h2 {
+  font-size: 2rem !important;
+  font-family: 'Poppins', serif !important;
+  font-weight: 600 !important;
+  color: $culoare-accent;
+}
+
+h3, .h3 {
+  font-size: 1.65rem !important;
+  font-family: 'Poppins', serif !important;
+  font-weight: 600 !important;
+}
+
+h4, .h4 {
+  font-size: 1.35rem !important;
+  font-family: 'Poppins', serif !important;
+  font-weight: 500 !important;
+}
+
+h5, .h5 {
+  font-size: 1.15rem !important;
+  font-family: 'Poppins', serif !important;
+  font-weight: 500 !important;
+}
+
+h6, .h6 {
+  font-size: 1rem !important;
+  font-family: 'Poppins', serif !important;
+  font-weight: 500 !important;
+}
+
+// ========== FAMILIA DE FONT IMPLICITĂ ========== 
+body {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  background-color: $culoare-fundal;
+  color: $culoare-text;
+}
+
+// ========== DIMENSIUNI DE BORDER RADIUS ========== 
+.card {
+  border-radius: 12px !important;
+  border: 2px solid $culoare-secundara;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  .card-header {
+    border-radius: 10px 10px 0 0 !important;
+    font-weight: 600;
+  }
+  
+  .card-footer {
+    border-radius: 0 0 10px 10px !important;
+  }
+}
+
+.btn {
+  border-radius: 8px !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.badge {
+  border-radius: 16px !important;
+}
+
+.nav-pills .nav-link {
+  border-radius: 20px !important;
+  
+  &.active {
+    background-color: $culoare-primara !important;
+    color: $alb !important;
+  }
+}
+
+// ========== ALTE VARIABILE PERSONALIZATE ========== 
+
+// Spațiere îmbunătățită
+.container-fluid {
+  padding-left: 8% !important;
+  padding-right: 8% !important;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+// Umbra customizată
+.shadow-custom {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+// Tranziții îmbunătățite
+.transition-custom {
+  transition: all 0.3s ease-in-out !important;
+}
+
+// ========== TEMA VINYL RECORDS (TEMA 1) ========== 
+.theme-vinyl-records {
+  background: linear-gradient(135deg, 
+    rgba($culoare-primara, 0.1) 0%, 
+    rgba($culoare-secundara, 0.1) 50%, 
+    rgba($culoare-accent, 0.1) 100%);
+    
+  .card {
+    background: linear-gradient(45deg, $alb 0%, $culoare-zona1 100%);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px) rotate(1deg);
+      box-shadow: 0 10px 20px rgba($culoare-primara, 0.3);
+    }
+  }
+  
+  .btn-primary {
+    background: linear-gradient(45deg, $culoare-primara, $culoare-accent);
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    &:hover {
+      background: linear-gradient(45deg, $culoare-accent, $culoare-primara);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ========== TEMA AUDIO EQUIPMENT (TEMA 2) ========== 
+.theme-audio-equipment {
+  background: linear-gradient(180deg, 
+    rgba($culoare-text, 0.05) 0%, 
+    rgba($culoare-secundara, 0.15) 100%);
+    
+  .card {
+    background: $culoare-zona2;
+    border: 1px solid rgba($culoare-text, 0.2);
+    box-shadow: 
+      inset 0 1px 3px rgba($alb, 0.7),
+      0 3px 6px rgba($culoare-text, 0.1);
+      
+    &:hover {
+      box-shadow: 
+        inset 0 1px 3px rgba($alb, 0.9),
+        0 6px 12px rgba($culoare-text, 0.2);
+    }
+  }
+  
+  .btn-secondary {
+    background: linear-gradient(90deg, $culoare-secundara, lighten($culoare-secundara, 10%));
+    color: $culoare-text;
+    border: 2px solid $culoare-text;
+    
+    &:hover {
+      background: $culoare-text;
+      color: $alb;
+      border-color: $culoare-text;
+    }
+  }
+}
+
+// ========== CORECTAREA ASPECTULUI ORIGINAL V&B ========== 
+.vinyl-beats-override {
+  // Resetăm efectele Bootstrap care ar putea afecta designul original
+  
+  // Păstrăm stilurile originale pentru linkuri
+  a:not(.btn):not(.nav-link) {
+    color: $culoare-primara;
+    text-decoration: none;
+    
+    &:hover {
+      color: $culoare-accent;
+      text-decoration: underline;
+    }
+    
+    &:visited {
+      color: #544efa;
+    }
+  }
+  
+  // Resetăm marginile Bootstrap pentru titluri
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+  }
+  
+  // Păstrăm grid-ul original pentru alte pagini
+  .page-container {
+    padding-left: 8%;
+    padding-right: 8%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+// ========== GRID CUSTOMIZAT PENTRU EVENIMENTE ========== 
+#grid-pagina {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: 
+    "header header header header"
+    "zona-evenimente zona-evenimente zona-evenimente zona-evenimente"
+    "zona-evenimente-viitoare zona-evenimente-viitoare zona-evenimente-viitoare zona-evenimente-viitoare"
+    "zona-evenimente-trecute zona-evenimente-trecute zona-info-generale zona-info-generale"
+    "zona-statistici zona-statistici zona-statistici zona-statistici"
+    "footer footer footer footer";
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Zonele pentru evenimente
+#zona-evenimente {
+  grid-area: zona-evenimente;
+  padding: 2rem;
+  border: 2px solid $culoare-secundara;
+  background-color: $alb;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#zona-evenimente-viitoare {
+  grid-area: zona-evenimente-viitoare;
+  padding: 2rem;
+  border: 2px solid $culoare-secundara;
+  background-color: $culoare-zona1;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#zona-evenimente-trecute {
+  grid-area: zona-evenimente-trecute;
+  padding: 2rem;
+  border: 2px solid $culoare-secundara;
+  background-color: $alb;
+  border-radius: 10px;
+}
+
+#zona-info-generale {
+  grid-area: zona-info-generale;
+  padding: 2rem;
+  border: 2px solid $culoare-secundara;
+  background-color: $alb;
+  border-radius: 10px;
+}
+
+#zona-statistici {
+  grid-area: zona-statistici;
+  padding: 2rem;
+  border: 2px solid $culoare-secundara;
+  background-color: $culoare-zona2;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+// ========== RESPONSIVE PENTRU ECRANELE CUSTOMIZATE ========== 
+
+// Ecrane medii (820px+) - customizat
+@include media-md-custom {
+  #grid-pagina {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "header header"
+      "zona-evenimente zona-evenimente"
+      "zona-evenimente-viitoare zona-evenimente-viitoare"
+      "zona-evenimente-trecute zona-info-generale"
+      "zona-statistici zona-statistici"
+      "footer footer";
+  }
+  
+  .container-fluid {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+}
+
+// Ecrane mari (1100px+) - customizat
+@include media-lg-custom {
+  #grid-pagina {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 
+      "header header header header"
+      "zona-evenimente zona-evenimente zona-evenimente zona-evenimente"
+      "zona-evenimente-viitoare zona-evenimente-viitoare zona-evenimente-viitoare zona-evenimente-viitoare"
+      "zona-evenimente-trecute zona-evenimente-trecute zona-info-generale zona-info-generale"
+      "zona-statistici zona-statistici zona-statistici zona-statistici"
+      "footer footer footer footer";
+  }
+}
+
+// Ecrane extra-large (1400px+) - customizat
+@include media-xl-custom {
+  .container-fluid {
+    padding-left: 8% !important;
+    padding-right: 8% !important;
+    max-width: 1400px;
+  }
+}
+
+// Mobile
+@media (max-width: 768px) {
+  #grid-pagina {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "header"
+      "zona-evenimente"
+      "zona-evenimente-viitoare"
+      "zona-evenimente-trecute"
+      "zona-info-generale"
+      "zona-statistici"
+      "footer";
+    gap: 1rem;
+  }
+  
+  .container-fluid {
+    padding-left: 3% !important;
+    padding-right: 3% !important;
+  }
+  
+  #zona-evenimente,
+  #zona-evenimente-viitoare,
+  #zona-evenimente-trecute,
+  #zona-info-generale,
+  #zona-statistici {
+    padding: 1rem;
+  }
+}
+
+// ========== EFECTE SUPLIMENTARE ========== 
+
+// Animații pentru carduri
+.card-animate {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Badge-uri personalizate
+.badge-custom {
+  background: linear-gradient(45deg, $culoare-secundara, lighten($culoare-secundara, 10%));
+  color: $culoare-text;
+  font-weight: 500;
+}
+
+// Butoane cu efecte speciale
+.btn-vinyl-effect {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba($alb, 0.4), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+}

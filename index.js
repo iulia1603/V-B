@@ -488,6 +488,7 @@ function afisareEroare(res, identificator, titlu, text, imagine){
 app.get("/resurse/imagini/galerie/small/:imagine", serveSmallImage);
 // ========== SFÂRȘITUL MIDDLEWARE-ULUI ==========
 
+
 // Middleware pentru verificarea dacă se încearcă accesarea unui director în /resurse
 app.use("/resurse", function(req, res, next) {
     const fullPath = path.join(__dirname, "resurse", req.path);
@@ -530,6 +531,13 @@ app.get("/galerie", function(req, res){
         imagini: imaginiGalerie,
         timpCurent: new Date().getHours() >= 5 && new Date().getHours() < 12 ? "dimineața" :
                    new Date().getHours() >= 12 && new Date().getHours() < 20 ? "ziua" : "noaptea"
+    });
+})
+
+// Ruta pentru pagina evenimente
+app.get("/evenimente", function(req, res){
+    res.render("pagini/evenimente", {
+        ip: req.ip // Include IP-ul pentru consistență cu alte pagini
     });
 })
 
