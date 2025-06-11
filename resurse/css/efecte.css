@@ -151,3 +151,348 @@ hr {
     background-color: var(--culoare-zona1); /* #FFF8E1 - galben foarte deschis */
     opacity: 0.3; /* Opacitate moderată pentru culoarea deschisă */
 }
+
+/* ========== EFECT CSS REFLEXIE TEXT PENTRU "POVESTEA NOASTRĂ" ========== */
+
+/* Aplicăm efectul doar pe h2 din articolul cu id="poveste" */
+#poveste h2 {
+    position: relative;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Creăm reflexia prin pseudoelement ::after */
+#poveste h2::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    transform-origin: 0 0;
+    /* Ordinea transformărilor este importantă! */
+    transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(10px, -25px);
+    opacity: 0.35;
+    filter: blur(1px); /* Reflexia ușor blurată */
+    color: var(--culoare-accent);
+    pointer-events: none;
+    transition: all 0.8s ease;
+}
+
+/* Efectul la hover - reflexia se alungește */
+#poveste h2:hover::after {
+    transform: rotateX(180deg) skew(-45deg) scaleY(0.8) translate(15px, -35px);
+    opacity: 0.5;
+    filter: blur(0.5px);
+}
+
+
+/* Aplicăm efectul de coloane pe textul din secțiunea "Povestea noastră" */
+#poveste .despre-text {
+    /* Pentru ecrane mari - 2 coloane */
+    column-count: 2;
+    column-gap: 2rem; /* Spațiu între coloane */
+    column-rule: 2px solid var(--culoare-accent); /* Linia despărțitoare */
+    text-align: justify; /* Text justificat pentru aspect profesional */
+    hyphens: auto; /* Despărțire automată a cuvintelor */
+}
+
+/* Pentru ecrane medii - o singură coloană */
+@media screen and (max-width: 1024px) {
+    #poveste .despre-text {
+        column-count: 1;
+        column-rule: none;
+    }
+}
+
+/* Pentru ecrane mici - o singură coloană */
+@media screen and (max-width: 768px) {
+    #poveste .despre-text {
+        column-count: 1;
+        column-rule: none;
+        text-align: left; /* Pe mobil, textul aliniat la stânga */
+    }
+}
+
+/* ========== EFECT CSS TEXT ANIMAT - SCROLL ORIZONTAL ========== */
+
+/* Container pentru textul animat - SIMPLU ȘI FUNCȚIONAL */
+.text-animat-container {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    margin: 10px 0;
+    border: 2px solid var(--culoare-accent, #FA844E); /* Pentru debug */
+    background-color: rgba(249, 181, 86, 0.1); /* Pentru debug */
+}
+
+/* Textul care se animează - CU KEYFRAMES SIMPLU */
+.text-animat {
+    position: absolute;
+    top: 8px;
+    left: 100%; /* Începe din dreapta */
+    white-space: nowrap;
+    font-family: var(--font-titlu, 'Poppins', sans-serif);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--culoare-accent, #FA844E);
+    text-shadow: 1px 1px 2px white;
+    
+    /* ANIMAȚIA SIMPLĂ - merge pe toate browserele */
+    animation-name: moveLeft;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+/* KEYFRAMES FOARTE SIMPLU - garantat să meargă */
+@keyframes moveLeft {
+    from {
+        left: 100%;
+    }
+    to {
+        left: -100%;
+    }
+}
+
+/* Responsive pentru text animat */
+@media screen and (max-width: 768px) {
+    .text-animat {
+        font-size: 1rem;
+        animation-duration: 12s;
+    }
+    
+    .text-animat-container {
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .text-animat {
+        font-size: 0.9rem;
+        animation-duration: 10s;
+        top: 5px;
+    }
+    
+    .text-animat-container {
+        height: 25px;
+    }
+}
+
+
+/* ========== EFECT CSS BACKGROUND FIX LA SCROLL - PAGINA GALERIE ========== */
+
+/* Aplicat pe body-ul paginii galerie */
+body.galerie-page {
+    /* Background fix cu imagini reale din galerie */
+    background-image: 
+        /* Overlay pentru lizibilitate */
+        linear-gradient(rgba(249, 229, 172, 0.85), rgba(249, 229, 172, 0.9)),
+        /* Prima imagine - pickup turntable */
+        url('/resurse/imagini/galerie/pickup_turntable.jpg');
+    
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed !important; /* BACKGROUND FIX */
+    
+    /* Animația care schimbă imaginea după 6 secunde */
+    animation: backgroundImageChange 12s infinite;
+}
+
+/* Keyframes pentru schimbarea imaginilor din galerie */
+@keyframes backgroundImageChange {
+    0%, 33% {
+        background-image: 
+            linear-gradient(rgba(249, 229, 172, 0.85), rgba(249, 229, 172, 0.9)),
+            url('/resurse/imagini/galerie/pickup_turntable.jpg');
+    }
+    33.1%, 66% {
+        background-image: 
+            linear-gradient(rgba(255, 248, 225, 0.85), rgba(255, 248, 225, 0.9)),
+            url('/resurse/imagini/galerie/cd_collection.jpg');
+    }
+    66.1%, 100% {
+        background-image: 
+            linear-gradient(rgba(249, 243, 240, 0.85), rgba(249, 243, 240, 0.9)),
+            url('/resurse/imagini/galerie/vinyl_collection.jpg');
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    body.galerie-page,
+    .galerie-container::before {
+        background-size: cover;
+        animation-duration: 8s; /* Mai rapid pe mobil */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body.galerie-page,
+    .galerie-container::before {
+        animation-duration: 6s; /* Încă mai rapid pe mobile */
+        /* Overlay mai puternic pe mobile pentru lizibilitate */
+        background-image: 
+            linear-gradient(rgba(249, 229, 172, 0.9), rgba(249, 229, 172, 0.95)),
+            url('/resurse/imagini/galerie/pickup_turntable.jpg');
+    }
+}
+
+/* ========== TABEL RESPONSIVE - PRODUSE MUZICALE ========== */
+
+.tabel-responsive-container {
+   margin: 2rem 0;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   overflow-x: auto;
+   /* Previn ieșirea din cadru */
+   max-width: 100%;
+   box-sizing: border-box;
+}
+
+#tabel-produse-muzicale {
+   width: 100%;
+   border-collapse: collapse;
+   background-color: white;
+   font-family: 'Montserrat', sans-serif;
+}
+
+#tabel-produse-muzicale thead th {
+   background-color: #FA342D;
+   color: white;
+   padding: 1rem;
+   text-align: left;
+   font-weight: bold;
+   font-family: 'Poppins', sans-serif;
+}
+
+#tabel-produse-muzicale tbody td {
+   padding: 0.75rem 1rem;
+   border-bottom: 1px solid #eee;
+}
+
+#tabel-produse-muzicale tbody tr:nth-child(odd) {
+   background-color: #FFF8E1;
+}
+
+#tabel-produse-muzicale tbody tr:nth-child(even) {
+   background-color: white;
+}
+
+#tabel-produse-muzicale caption {
+   padding: 1rem;
+   font-style: italic;
+   text-align: center !important; /* CENTRAT MEREU - FORȚAT */
+   background-color: #FFF3E0;
+   font-family: 'Poppins', sans-serif;
+   font-weight: 600;
+}
+
+/* RESPONSIVE - PE MOBILE */
+@media screen and (max-width: 768px) {
+   .tabel-responsive-container {
+       overflow-x: visible;
+       margin: 1rem 0;
+       /* Asigur că nu iese din cadru */
+       padding: 0 0.5rem;
+       box-sizing: border-box;
+   }
+   
+   #tabel-produse-muzicale thead {
+       display: none;
+   }
+   
+   #tabel-produse-muzicale,
+   #tabel-produse-muzicale tbody {
+       display: block;
+       width: 100%;
+   }
+   
+   #tabel-produse-muzicale tbody tr {
+       display: block;
+       width: 100%;
+       background-color: white !important;
+       border: 2px solid #F9B556;
+       border-radius: 10px;
+       margin-bottom: 1rem;
+       padding: 1rem;
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       /* Previn ieșirea din cadru */
+       box-sizing: border-box;
+       max-width: 100%;
+   }
+   
+   #tabel-produse-muzicale tbody td {
+       display: block !important;
+       width: 100% !important;
+       padding: 0.5rem 0 !important;
+       border: none !important;
+       border-bottom: 1px solid #eee !important;
+       background: none !important;
+       text-align: left !important;
+       font-size: 1rem !important;
+       line-height: 1.5 !important;
+       /* Previn overflow text */
+       word-wrap: break-word !important;
+       overflow-wrap: break-word !important;
+       max-width: 100% !important;
+       box-sizing: border-box !important;
+   }
+   
+   #tabel-produse-muzicale tbody td:last-child {
+       border-bottom: none !important;
+   }
+   
+   #tabel-produse-muzicale tbody td:before {
+       font-weight: bold;
+       color: #FA342D;
+       font-family: 'Poppins', sans-serif;
+       font-size: 0.9rem;
+       display: block;
+       margin-bottom: 2px;
+   }
+   
+   #tabel-produse-muzicale tbody td:nth-child(1):before { content: "🎵 Produs:"; }
+   #tabel-produse-muzicale tbody td:nth-child(2):before { content: "💿 Tip:"; }
+   #tabel-produse-muzicale tbody td:nth-child(3):before { content: "🎼 Gen:"; }
+   #tabel-produse-muzicale tbody td:nth-child(4):before { content: "💰 Preț:"; }
+   #tabel-produse-muzicale tbody td:nth-child(5):before { content: "📦 Stoc:"; }
+   
+   /* CAPTION CENTRAT CHIAR ȘI PE MOBILE */
+   #tabel-produse-muzicale caption {
+       padding: 0.75rem !important;
+       font-size: 0.9rem !important;
+       margin-bottom: 0.75rem !important;
+       border-radius: 10px !important;
+       background-color: #FFF8E1 !important;
+       text-align: center !important; /* CENTRAT FORȚAT PE MOBILE */
+       max-width: 100% !important;
+       box-sizing: border-box !important;
+       display: block !important;
+       width: 100% !important;
+   }
+}
+
+/* Pentru ecrane foarte mici */
+@media screen and (max-width: 480px) {
+   .tabel-responsive-container {
+       margin: 0.5rem 0;
+       padding: 0 0.25rem;
+   }
+   
+   #tabel-produse-muzicale tbody tr {
+       padding: 0.75rem;
+       margin-bottom: 0.75rem;
+   }
+   
+   /* CAPTION CENTRAT ȘI PE ECRANE FOARTE MICI */
+   #tabel-produse-muzicale caption {
+       padding: 0.5rem !important;
+       font-size: 0.85rem !important;
+       text-align: center !important; /* CENTRAT FORȚAT */
+   }
+}
+
