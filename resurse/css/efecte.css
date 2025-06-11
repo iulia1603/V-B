@@ -1,0 +1,108 @@
+/* ========== EFECTE.CSS - HR CU CLUSTERE DE 3 BALOANE ÎN DIAGONALĂ ========== */
+
+:root {
+    /* Culori din schema V&B */
+    --hr-culoare-primara: #FA342D;
+    --hr-culoare-secundara: #F9B556;
+    --hr-culoare-accent: #FA844E;
+    --hr-culoare-fundal: #F9E5AC;
+    --alb: white;
+    
+    /* Dimensiuni pentru hr și clustere */
+    --hr-spatiu: 2rem;
+    --cluster-latime: 50px;
+    --cluster-inaltime: 50px;
+}
+
+/* ========== HR CU CLUSTERE DE 3 BALOANE ÎN DIAGONALĂ ========== */
+
+hr {
+    border: none;
+    height: var(--cluster-inaltime);
+    margin: var(--hr-spatiu) 0;
+    position: relative;
+    overflow: visible;
+    
+    /* Cluster de 3 baloane suprapuse în diagonală */
+    background-image: 
+        /* Balon mic portocaliu în față */
+        radial-gradient(circle 5px at 40% 60%, 
+            rgba(255, 255, 255, 0.8) 0%, 
+            var(--hr-culoare-accent) 20%, 
+            #e6743c 60%, 
+            #cc6635 85%, 
+            transparent 100%),
+        /* Balon mediu galben în mijloc */
+        radial-gradient(circle 10px at 55% 57%, 
+            rgba(255, 255, 255, 0.5) 0%, 
+            var(--hr-culoare-secundara) 12%, 
+            #e6a344 45%, 
+            #cc8f39 75%, 
+            transparent 100%),  
+
+        /* Balon mare roșu în spate */
+        radial-gradient(circle 8px at 72% 47%, 
+            rgba(255, 255, 255, 0.4) 0%, 
+            var(--hr-culoare-primara) 15%, 
+            #d62d20 50%, 
+            #a01d15 80%, 
+            transparent 100%);
+    background-size: var(--cluster-latime) var(--cluster-inaltime);
+    background-repeat: repeat-x;
+
+     /* MASK-IMAGE pentru fade-out la margini */
+    mask-image: linear-gradient(to right, 
+        transparent 0%, 
+        black 15%, 
+        black 85%, 
+        transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, 
+        transparent 0%, 
+        black 15%, 
+        black 85%, 
+        transparent 100%);
+}
+
+
+@media (max-width: 768px) {
+    :root {
+        --cluster-latime: 50px;
+        --cluster-inaltime: 35px;
+    }
+    
+    hr {
+        height: var(--cluster-inaltime);
+    }
+    
+    hr.hr-baloane-mari {
+        --cluster-latime: 65px;
+        --cluster-inaltime: 45px;
+    }
+    
+    hr.hr-baloane-dense {
+        --cluster-latime: 35px;
+        --cluster-inaltime: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --cluster-latime: 40px;
+        --cluster-inaltime: 30px;
+        --hr-spatiu: 1.5rem;
+    }
+    
+    hr {
+        height: var(--cluster-inaltime);
+    }
+    
+    hr.hr-baloane-mari {
+        --cluster-latime: 50px;
+        --cluster-inaltime: 35px;
+    }
+    
+    hr.hr-baloane-dense {
+        --cluster-latime: 28px;
+        --cluster-inaltime: 20px;
+    }
+}
