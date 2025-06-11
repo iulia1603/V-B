@@ -1,0 +1,335 @@
+// Variabile SASS pentru culori și dimensiuni
+$primary-color: #000;
+$secondary-color: #fff;
+$text-color: #fff;
+$hover-text-color: #fff;
+$submenu-bg: #000;
+$submenu-hover-bg: #888; // Culoarea gri pentru hover pe submeniu
+$submenu-item-bg: #000;  // Culoare implicită negru pentru elementele submeniu
+$menu-option-bg: #000;   // Culoare pentru opțiunile principale
+
+// Gradientul pentru efectul de hover
+$hover-gradient-start: #000;
+$hover-gradient-end: #fff;
+
+// Variabile pentru dimensiuni
+$menu-height: 60px;
+$mobile-menu-height: 50px; // Înălțimea meniului pe mobil
+$mobile-item-height: 50px; // Înălțimea elementelor pe mobil
+$mobile-subitem-height: 40px; // Înălțimea subelementelor pe mobil
+$submenu-offset: 0; // Zero pentru a fi lipite de marginea de jos a butonului
+
+// Breakpoints pentru responsive
+$breakpoint-medium: 768px;
+$breakpoint-small: 576px;
+
+// Mixin pentru gradientul care apare la hover (conținut în interiorul butonului)
+@mixin hover-gradient-bar {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(to right, $hover-gradient-start, $hover-gradient-end);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: right;
+}
+
+// Mixin pentru tranziția la submeniuri - efect de zoom vertical
+@mixin submenu-transition {
+  transform: scaleY(0);
+  transform-origin: center; // Punctul central pentru efect de zoom
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+// Mixin pentru elementele de submeniu
+@mixin submenu-item($index) {
+  transition-delay: 0.05s * $index;
+}
+
+// Stiluri pentru meniul principal
+nav.main-nav {
+  background-color: $primary-color;
+  font-family: 'Poppins', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
+  // Lista principală
+  > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    
+    // Elementele de meniu principal
+    > li {
+      position: relative;
+      height: $menu-height;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      background-color: $menu-option-bg;
+      
+      // Linkurile din meniul principal
+      > a {
+        color: $text-color;
+        text-decoration: none;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        font-weight: 500;
+        
+        // Bara de gradient pentru hover
+        &::before {
+          @include hover-gradient-bar;
+        }
+        
+        // Starea de hover pentru elementele principale
+        &:hover {
+          color: $hover-text-color;
+          
+          &::before {
+            transform: scaleX(1);
+          }
+        }
+        
+        // Icon pentru home
+        &.home {
+          font-size: 1.2em;
+          
+          i {
+            margin-right: 5px;
+          }
+        }
+      }
+      
+      // Stil pentru submeniuri pe ecrane mari și medii
+      > ul {
+        @include submenu-transition;
+        position: absolute;
+        top: 100%; // Lipit direct de marginea de jos a butonului
+        left: 0;
+        background-color: $submenu-bg;
+        width: 100%;
+        list-style: none;
+        padding: 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        
+        // Elementele din submeniu
+        > li {
+          display: flex;
+          align-items: center;
+          background-color: $submenu-item-bg;
+          transition: background-color 0.3s ease;
+          height: $menu-height; // Aceeași înălțime ca opțiunile principale
+          
+          // Generarea elementelor de submeniu cu delay crescător
+          @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+              @include submenu-item($i);
+            }
+          }
+          
+          // Hover pe elementele submeniu - schimbare la gri
+          &:hover {
+            background-color: $submenu-hover-bg;
+          }
+          
+          > a {
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $text-color;
+            text-decoration: none;
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+      
+      // Afișarea submeniului prin hover pe ecrane mari și medii
+      &:hover > ul {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+  }
+  
+  // Stiluri pentru butonul hamburger (ecrane mici)
+  .menu-toggle {
+    display: none;
+  }
+  
+  // Media query pentru ecrane medii
+  @media (max-width: $breakpoint-medium) {
+    > ul > li > a {
+      padding: 0 15px;
+      font-size: 0.9em;
+      
+      &.home {
+        font-size: 0; // Ascunde textul "Home"
+        padding: 0 15px;
+        
+        i {
+          font-size: 1.2rem; // Păstrează iconul vizibil
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  
+  // Media query pentru ecrane mici (mobile)
+  @media (max-width: $breakpoint-small) {
+    // Stilizare pentru butonul de închidere (X)
+    .menu-toggle {
+      display: block;
+      position: fixed; // Poziția fixă
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px;
+      color: $text-color;
+      font-size: 1.5em;
+      cursor: pointer;
+      background-color: $primary-color;
+      z-index: 1001;
+      text-align: left;
+      height: $mobile-menu-height;
+      box-sizing: border-box;
+      
+      i {
+        display: inline-block;
+      }
+    }
+    
+    // Meniul principal pentru mobil
+    > ul {
+      position: fixed;
+      width: 100%;
+      background-color: $primary-color;
+      padding-top: $mobile-menu-height; // Spațiu pentru butonul hamburger
+      display: flex;
+      flex-direction: column;
+      
+      // Poziție inițială - deasupra ecranului, ascuns
+      top: -100vh;
+      left: 0;
+      
+      // Transformare pentru efect de cadran de ceas
+      transform-origin: right top; // Punctul de pivot în colțul dreapta sus
+      transform: rotate(-90deg); // Rotație inițială
+      transition: transform 0.5s ease, top 0.5s ease;
+      
+      // Înălțime variabilă
+      height: auto;
+      max-height: 100vh; // Poate ocupa tot ecranul dacă este nevoie
+      overflow-y: auto;
+      
+      // Când meniul este activ - animație de tip cadran de ceas, primul cadran
+      &.show {
+        top: 0; // Poziție sus
+        transform: rotate(0deg); // Rotație completă în poziție verticală
+      }
+      
+      // Categoriile principale pe mobil
+      > li {
+        display: block;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+        
+        > a {
+          display: block;
+          font-size: 1.2em;
+          padding: 15px;
+          text-align: center;
+          color: rgba(255, 255, 255, 0.9);
+          
+          &::before {
+            display: none;
+          }
+        }
+        
+        // Stare de hover pe opțiunile principale
+        &:hover > a {
+          color: white;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-left: none;
+          border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        // Submeniu pe mobil - direct în continuare, nu suprapus
+        > ul {
+          position: static; // Poziționat în fluxul normal
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          background-color: rgba(255, 255, 255, 0.05);
+          box-shadow: none;
+          border-left: none;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transform: none; // Fără transformare pentru submeniu
+          transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.3s ease;
+          display: block;
+          
+          // Elementele din submeniu
+          > li {
+            margin-bottom: 3px;
+            
+            > a {
+              padding: 10px;
+              font-size: 1em;
+              color: rgba(255, 255, 255, 0.8);
+              display: block;
+              text-align: center;
+              
+              &:hover {
+                color: white;
+                background-color: rgba(255, 255, 255, 0.1);
+              }
+            }
+          }
+        }
+        
+        // Afișare submeniu la hover pe mobil
+        &:hover > ul {
+          max-height: 1000px; // Înălțime mare pentru a permite orice conținut
+          opacity: 1;
+        }
+      }
+    }
+    
+    // Stiluri pentru body când meniul este deschis
+    &.menu-open {
+      body {
+        overflow: hidden; // Previne scroll-ul pe pagină când meniul e deschis
+      }
+    }
+  }
+}
+
+// Variabile CSS pentru schimbarea ușoară a temei cromatice
+:root {
+  --primary-menu-color: #{$primary-color};
+  --secondary-menu-color: #{$secondary-color};
+  --menu-text-color: #{$text-color};
+  --menu-hover-text: #{$hover-text-color};
+  --submenu-background: #{$submenu-bg};
+  --submenu-hover-background: #{$submenu-hover-bg};
+  --gradient-start: #{$hover-gradient-start};
+  --gradient-end: #{$hover-gradient-end};
+}

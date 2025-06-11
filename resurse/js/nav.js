@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const href = targetLink ? targetLink.getAttribute('href') : null;
                         
                         // Dacă link-ul este către Home sau Despre noi, permitem comportamentul implicit
-                        if(href === '/' || href === '/despre') {
+                        if(href === '/' || href === '/despre' || href === '/evenimente') {
                             return true; // Permite navigarea
                         }
                         

@@ -9,82 +9,7 @@
         <link rel="stylesheet" href="/resurse/css/galerie.css">
     </head>
     <body class="galerie-page">
-        <div class="page-container">
-            <div id="grid-pagina">
-                <header id="header">
-                    <h1 style="color:rgba(255, 115, 0, 0.496)">
-                        <i class="fa-solid fa-record-vinyl"></i>
-                        Vinyl & Beats - Bazar de Muzică
-                    </h1>
-                    <!-- Meniul principal de navigare -->
-                    <nav class="main-nav">
-                        <!-- Buton pentru meniul mobile -->
-                        <div class="menu-toggle">
-                            <i class="fas fa-bars"></i>
-                        </div>
-
-                        <ul>
-                            <!-- Pagina principală (Home) -->
-                            <li>
-                                <a href="/" class="home">
-                                    <i class="fas fa-home"></i> Home
-                                </a>
-                                <ul>
-                                    <li><a href="/#cd-uri">Cd-uri</a></li>
-                                    <li><a href="/#viniluri">Viniluri</a></li>
-                                    <li><a href="/#casete_audio">Casete Audio</a></li>
-                                    <li><a href="/#accesorii">Accesorii</a></li>
-                                    <li><a href="/#resurse">Resurse</a></li>
-                                    <li><a href="/#echipamente_audio">Echipamente Audio</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Produse -->
-                            <li>
-                                <a href="#produse">Produse</a>
-                                <ul>
-                                    <li><a href="#pop">Pop</a></li>
-                                    <li><a href="#rock-folk">Rock / Folk</a></li>
-                                    <li><a href="#jazz">Jazz</a></li>
-                                    <li><a href="#hip-hop">Hip-Hop</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Galerie -->
-                            <li>
-                                <a href="/galerie">
-                                    <i class="fas fa-images"></i> Galerie
-                                </a>
-                                <ul>
-                                    <li><a href="/galerie">Galeria completă</a></li>
-                                    <li><a href="/#galerie-statica">Galerie pe home</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Evenimente -->
-                            <li>
-                                <a href="#evenimente">Evenimente</a>
-                                <ul>
-                                    <li><a href="#lansari">Lansări</a></li>
-                                    <li><a href="#concerte">Concerte</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Despre noi -->
-                            <li>
-                                <a href="/despre">Despre noi</a>
-                                <ul>
-                                    <li><a href="/despre#poveste">Povestea noastră</a></li>
-                                    <li><a href="/despre#misiune">Misiunea noastră</a></li>
-                                    <li><a href="/despre#echipa">Echipa noastră</a></li>
-                                    <li><a href="/despre#contact">Contact</a></li>
-                                    <li><a href="/despre#locatie">Locație</a></li>
-                                    
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </header>
+        <%- include("../fragmente/header.ejs") %>
         
                 <section id="galerie-statica" class="galerie-container">
                     <h2><i class="fas fa-images"></i> Galeria Vinyl & Beats</h2>
@@ -267,28 +192,6 @@
             // Verificăm la fiecare minut
             setInterval(checkTimeUpdate, 60000);
             
-            // Efect de încărcare progresivă pentru imagini
-            document.addEventListener('DOMContentLoaded', function() {
-                const images = document.querySelectorAll('.galerie-imagine');
-                
-                images.forEach((img, index) => {
-                    img.style.opacity = '0';
-                    img.style.transform = 'translateY(20px)';
-                    
-                    img.onload = function() {
-                        setTimeout(() => {
-                            img.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                            img.style.opacity = '1';
-                            img.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    };
-                    
-                    // Dacă imaginea este deja încărcată
-                    if (img.complete) {
-                        img.onload();
-                    }
-                });
-            });
         </script>
     </body>
 </html>

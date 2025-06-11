@@ -1,40 +1,33 @@
 {
-  "name": "vinyl-beats-galerie",
+  "name": "vinyl-beats-bazar",
   "version": "1.0.0",
-  "description": "Bazar de muzică Vinyl & Beats cu galerie statică dinamică",
+  "description": "Bazar online de muzică - Vinyl & Beats cu Bootstrap customizat",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "install-deps": "npm install"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node -e \"require('./index.js'); setTimeout(() => console.log('CSS compiled!'), 2000)\""
   },
   "keywords": [
-    "muzica",
-    "vinil",
-    "galerie",
-    "express",
-    "ejs",
-    "sharp"
+    "music",
+    "vinyl",
+    "audio",
+    "bazar",
+    "marketplace",
+    "bootstrap",
+    "scss"
   ],
-  "author": "Vinyl & Beats",
-  "license": "MIT",
+  "author": "Iulia Georgescu",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
+    "bootstrap": "^5.3.6",
     "ejs": "^3.1.9",
-    "sharp": "^0.33.0"
+    "express": "^4.18.2",
+    "sass": "^1.69.5",
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
-  },
-  "engines": {
-    "node": ">=16.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vinyl-beats/galerie-statica.git"
-  },
-  "bugs": {
-    "url": "https://github.com/vinyl-beats/galerie-statica/issues"
-  },
-  "homepage": "https://github.com/vinyl-beats/galerie-statica#readme"
+    "nodemon": "^3.0.1"
+  }
 }
