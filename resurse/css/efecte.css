@@ -106,3 +106,48 @@ hr {
         --cluster-inaltime: 20px;
     }
 }
+
+
+/* ========== EFECT CSS DUOTONE PENTRU IMAGINEA DIN PAGINA DESPRE ========== */
+
+/* Container pentru imaginea cu efect duotone */
+.despre-figure {
+    position: relative;
+}
+
+/* Pseudoelementele pentru efectul duotone - starea inițială */
+.despre-figure::after,
+.despre-figure::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: all 2s linear;
+    opacity: 0.4; /* Opacitate mărită pentru a fi mai vizibil */
+}
+
+/* Prima culoare duotone - roșu subtil din paleta V&B */
+.despre-figure::after {
+    background-color: var(--culoare-primara); /* #FA342D */
+    mix-blend-mode: lighten;
+}
+
+/* A doua culoare duotone - galben subtil din paleta V&B */
+.despre-figure::before {
+    background-color: var(--culoare-secundara); /* #F9B556 */
+    mix-blend-mode: darken;
+}
+
+/* Efectul la hover - culorile accent din paleta */
+.despre-figure:hover::after {
+    background-color: var(--culoare-accent); /* #FA844E - portocaliu */
+    opacity: 0.6; /* Opacitate mai mare la hover pentru contrast evident */
+}
+
+.despre-figure:hover::before {
+    background-color: var(--culoare-zona1); /* #FFF8E1 - galben foarte deschis */
+    opacity: 0.3; /* Opacitate moderată pentru culoarea deschisă */
+}
