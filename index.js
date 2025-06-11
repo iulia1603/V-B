@@ -21,6 +21,7 @@ obGlobal={
     obGalerie:null
 }
 
+// ========== FUNCȚII PENTRU SHARP ========== 
 
 async function genereazaImaginiMici() {
     if (!obGlobal.obGalerie || !obGlobal.obGalerie.imagini) {
