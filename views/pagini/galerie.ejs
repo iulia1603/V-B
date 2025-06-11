@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="description" content="Galeria Vinyl & Beats - Explorează colecția noastră de echipamente audio și muzică">
+        <meta name="keywords" content="galerie muzică, echipamente audio, viniluri, CD-uri, casete audio, galerie fotografică">
+        <title>Vinyl & Beats - Galeria Noastră</title>
+        
+        <%- include("../fragmente/head.ejs") %>
+        <link rel="stylesheet" href="/resurse/css/galerie.css">
+    </head>
+    <body class="galerie-page">
+        <div class="page-container">
+            <div id="grid-pagina">
+                <header id="header">
+                    <h1 style="color:rgba(255, 115, 0, 0.496)">
+                        <i class="fa-solid fa-record-vinyl"></i>
+                        Vinyl & Beats - Bazar de Muzică
+                    </h1>
+                    <!-- Meniul principal de navigare -->
+                    <nav class="main-nav">
+                        <!-- Buton pentru meniul mobile -->
+                        <div class="menu-toggle">
+                            <i class="fas fa-bars"></i>
+                        </div>
+
+                        <ul>
+                            <!-- Pagina principală (Home) -->
+                            <li>
+                                <a href="/" class="home">
+                                    <i class="fas fa-home"></i> Home
+                                </a>
+                                <ul>
+                                    <li><a href="/#cd-uri">Cd-uri</a></li>
+                                    <li><a href="/#viniluri">Viniluri</a></li>
+                                    <li><a href="/#casete_audio">Casete Audio</a></li>
+                                    <li><a href="/#accesorii">Accesorii</a></li>
+                                    <li><a href="/#resurse">Resurse</a></li>
+                                    <li><a href="/#echipamente_audio">Echipamente Audio</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Produse -->
+                            <li>
+                                <a href="#produse">Produse</a>
+                                <ul>
+                                    <li><a href="#pop">Pop</a></li>
+                                    <li><a href="#rock-folk">Rock / Folk</a></li>
+                                    <li><a href="#jazz">Jazz</a></li>
+                                    <li><a href="#hip-hop">Hip-Hop</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Galerie -->
+                            <li>
+                                <a href="/galerie">
+                                    <i class="fas fa-images"></i> Galerie
+                                </a>
+                                <ul>
+                                    <li><a href="/galerie">Galeria completă</a></li>
+                                    <li><a href="/#galerie-statica">Galerie pe home</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Evenimente -->
+                            <li>
+                                <a href="#evenimente">Evenimente</a>
+                                <ul>
+                                    <li><a href="#lansari">Lansări</a></li>
+                                    <li><a href="#concerte">Concerte</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Despre noi -->
+                            <li>
+                                <a href="/despre">Despre noi</a>
+                                <ul>
+                                    <li><a href="/despre#poveste">Povestea noastră</a></li>
+                                    <li><a href="/despre#misiune">Misiunea noastră</a></li>
+                                    <li><a href="/despre#echipa">Echipa noastră</a></li>
+                                    <li><a href="/despre#contact">Contact</a></li>
+                                    <li><a href="/despre#locatie">Locație</a></li>
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </header>
+        
+                <section id="galerie-statica" class="galerie-container">
+                    <h2><i class="fas fa-images"></i> Galeria Vinyl & Beats</h2>
+                    <p class="galerie-descriere">
+                        Bun venit în galeria noastră dinamică! Imaginile se actualizează automat în funcție de momentul zilei, 
+                        oferindu-vă o experiență personalizată. În prezent afișăm colecția pentru 
+                        <strong><%= timpCurent %></strong>.
+                    </p>
+                    
+                    <div class="galerie-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-images"></i>
+                            <span class="stat-number"><%= imagini ? imagini.length : 0 %></span>
+                            <span class="stat-label">Imagini Actuale</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-clock"></i>
+                            <span class="stat-number"><%= new Date().getHours() %>:00</span>
+                            <span class="stat-label">Ora Curentă</span>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-day"></i>
+                            <span class="stat-number"><%= timpCurent %></span>
+                            <span class="stat-label">Perioada Zilei</span>
+                        </div>
+                    </div>
+                    
+                    <div class="galerie-grid">
+                        <% if (imagini && imagini.length > 0) { %>
+                            <% imagini.forEach(function(imagine, index) { %>
+                                <figure class="galerie-item" data-index="<%= index %>">
+                                    <picture>
+                                        <!-- Sursă pentru ecrane mari (peste 1024px) -->
+                                        <source media="(min-width: 1024px)" 
+                                                srcset="<%= imagine.cale_completa %>">
+                                        
+                                        <!-- Sursă pentru ecrane medii (768px - 1023px) -->
+                                        <source media="(min-width: 768px)" 
+                                                srcset="<%= imagine.cale_completa %>">
+                                        
+                                        <!-- Sursă pentru ecrane mici (sub 768px) - imagine implicită -->
+                                        <img src="<%= imagine.cale_completa %>" 
+                                             alt="<%= imagine.alt || imagine.nume %>"
+                                             title="<%= imagine.descriere %>"
+                                             class="galerie-imagine"
+                                             loading="lazy">
+                                    </picture>
+                                    
+                                    <figcaption class="galerie-caption">
+                                        <span class="galerie-nume"><%= imagine.nume %></span>
+                                        <span class="galerie-descriere-text"><%= imagine.descriere %></span>
+                                        
+                                        <!-- ========== ATRIBUIREA PENTRU LICENȚE CC-BY ========== -->
+                                        <% if (imagine.licenta === 'CC-BY' && imagine.autor) { %>
+                                            <div class="galerie-atribuire">
+                                                <p class="licenta-info">
+                                                    <i class="fas fa-creative-commons"></i>
+                                                    <small>
+                                                        Fotografie de 
+                                                        <% if (imagine.autor_url) { %>
+                                                            <a href="<%= imagine.autor_url %>" target="_blank" rel="noopener"><%= imagine.autor %></a>
+                                                        <% } else { %>
+                                                            <strong><%= imagine.autor %></strong>
+                                                        <% } %>
+                                                        • Licență: <a href="<%= imagine.url_licenta %>" target="_blank" rel="noopener">CC BY 4.0</a>
+                                                        • <a href="<%= imagine.sursa %>" target="_blank" rel="noopener">Sursă</a>
+                                                    </small>
+                                                </p>
+                                            </div>
+                                        <% } %>
+                                        <!-- ========== SFÂRȘITUL ATRIBUIRII ========== -->
+                                    </figcaption>
+                                </figure>
+                            <% }); %>
+                        <% } else { %>
+                            <div class="galerie-goala">
+                                <p>Nu există imagini disponibile pentru acest moment al zilei.</p>
+                                <p>Reveniți mai târziu pentru a vedea colecția actualizată!</p>
+                            </div>
+                        <% } %>
+                    </div>
+                    
+                    <div class="galerie-info">
+                        <p><strong>Afișăm <%= imagini ? imagini.length : 0 %> imagini</strong> 
+                           pentru perioada curentă a zilei.</p>
+                        <p class="galerie-program">
+                            <i class="fas fa-clock"></i> 
+                            <strong>Dimineața (5:00-12:00):</strong> Echipamente de start și colecții basics<br>
+                            <i class="fas fa-sun"></i> 
+                            <strong>Ziua (12:00-20:00):</strong> Echipamente profesionale și colecții premium<br>
+                            <i class="fas fa-moon"></i> 
+                            <strong>Noaptea (20:00-5:00):</strong> Echipamente de studio și colecții rare
+                        </p>
+                    </div>
+                    
+                    <div class="galerie-footer-info">
+                        <h3>Despre Galeria Noastră</h3>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <i class="fas fa-sync-alt"></i>
+                                <h4>Actualizare Automată</h4>
+                                <p>Galeria se actualizează automat în funcție de momentul zilei, oferind conținut relevant pentru fiecare perioadă.</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-mobile-alt"></i>
+                                <h4>Design Responsiv</h4>
+                                <p>Optimizată pentru toate dispozitivele - de la telefoane mobile la desktop-uri mari.</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-magic"></i>
+                                <h4>Efecte Interactive</h4>
+                                <p>Treceți cu mouse-ul peste imagini pentru a experimenta animații fluide și rotiri spectaculoase.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="galerie-navigation">
+                            <h4>Navigare Rapidă</h4>
+                            <div class="nav-buttons">
+                                <a href="/" class="nav-btn">
+                                    <i class="fas fa-home"></i>
+                                    Înapoi la Home
+                                </a>
+                                <a href="/despre" class="nav-btn">
+                                    <i class="fas fa-info-circle"></i>
+                                    Despre Noi
+                                </a>
+                                <a href="javascript:location.reload()" class="nav-btn">
+                                    <i class="fas fa-refresh"></i>
+                                    Reîmprospătează
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <footer>
+                    <address>
+                        <p>Date contact:</p>
+                        <p>Telefon: <a href="tel:+40766691308">+40 766 691 308</a></p>
+                        <p>Adresă: <a href="https://maps.google.com/?q=Facultatea+de+Matematica+si+Informatica+Bucuresti">Str.
+                                Academiei nr. 14, București</a></p>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.885629334555!2d26.10050682674782!3d44.43522577107288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83%2C%20Universitatea%20din%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1709929271953!5m2!1sro!2sro"
+                            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <p>E-mail: <a href="mailto:contact@V&B.ro">contact@V&B.ro</a></p>
+                        <p>Chat: <a href="https://wa.me/40766691308">WhatsApp</a></p>
+                    </address>
+                    <p><small>&copy; 2025 V&B. Drepturi rezervate.</small></p>
+                    <p><small>Pagină creată la data de <time datetime="2025-03-07">7 martie 2025</time></small></p>
+
+                    <!-- Buton back-to-top -->
+                    <a href="#" class="back-to-top" title="Înapoi sus">
+                        <div class="back-to-top-circle">
+                            <div class="back-to-top-arrow">↑</div>
+                        </div>
+                    </a>
+                </footer>
+            </div> <!-- închide #grid-pagina -->
+        </div> <!-- închide .page-container -->
+        
+        <script>
+            // Script pentru actualizarea automată a galeriei la schimbarea orei
+            function checkTimeUpdate() {
+                const now = new Date();
+                const currentHour = now.getHours();
+                
+                // Verificăm dacă suntem la începutul unei noi perioade
+                if (currentHour === 5 || currentHour === 12 || currentHour === 20) {
+                    const minutes = now.getMinutes();
+                    if (minutes === 0) {
+                        // Reîmprospătăm pagina la începutul unei noi perioade
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
+                    }
+                }
+            }
+            
+            // Verificăm la fiecare minut
+            setInterval(checkTimeUpdate, 60000);
+            
+            // Efect de încărcare progresivă pentru imagini
+            document.addEventListener('DOMContentLoaded', function() {
+                const images = document.querySelectorAll('.galerie-imagine');
+                
+                images.forEach((img, index) => {
+                    img.style.opacity = '0';
+                    img.style.transform = 'translateY(20px)';
+                    
+                    img.onload = function() {
+                        setTimeout(() => {
+                            img.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                            img.style.opacity = '1';
+                            img.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    };
+                    
+                    // Dacă imaginea este deja încărcată
+                    if (img.complete) {
+                        img.onload();
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

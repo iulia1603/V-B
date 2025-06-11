@@ -1,0 +1,140 @@
+{
+  "cale_baza": "/resurse/imagini/galerie",
+  "imagini": [
+    {
+      "cale_relativa": "vinil_jazz.jpg",
+      "nume": "Colecție Vinil Jazz",
+      "descriere": "Albume clasice de jazz pe vinil vintage din anii '60",
+      "timp": "dimineata",
+      "alt": "Colecție de discuri de jazz vintage pe masa de lemn",
+      "licenta": "CC0",
+      "autor": null,
+      "sursa": "https://unsplash.com/photos/vinyl-records",
+      "url_licenta": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "cale_relativa": "pickup_vintage.jpg", 
+      "nume": "Pickup Vintage",
+      "descriere": "Pickup profesional pentru audiofili pasionați de sunet analog",
+      "timp": "dimineata",
+      "alt": "Pickup vintage cu braț de ton și cartuș magnetic",
+      "licenta": "CC-BY",
+      "autor": "John Matychuk",
+      "sursa": "https://unsplash.com/photos/vintage-turntable-gUK3lA3K7Yo",
+      "url_licenta": "https://creativecommons.org/licenses/by/4.0/",
+      "autor_url": "https://unsplash.com/@john_matychuk"
+    },
+    {
+      "cale_relativa": "casete_rock.jpg",
+      "nume": "Casete Rock",
+      "descriere": "Colecție de casete audio cu muzică rock din anii '80-'90",
+      "timp": "zi",
+      "alt": "Casete audio cu albume rock clasice aranjate pe raft",
+      "licenta": "CC0",
+      "autor": null,
+      "sursa": "https://pixabay.com/photos/cassettes-music-audio-retro",
+      "url_licenta": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "cale_relativa": "amplificator_studio.jpg",
+      "nume": "Amplificator Studio",
+      "descriere": "Amplificator de înaltă fidelitate pentru studiouri profesionale",
+      "timp": "zi",
+      "alt": "Amplificator audio profesional cu butoane și indicatori LED",
+      "licenta": "public-domain",
+      "autor": null,
+      "sursa": "https://commons.wikimedia.org/wiki/File:Audio_amplifier.jpg",
+      "url_licenta": "https://en.wikipedia.org/wiki/Public_domain"
+    },
+    {
+      "cale_relativa": "cd_collection.jpg",
+      "nume": "Colecție CD-uri",
+      "descriere": "Selecție variată de CD-uri cu diferite genuri muzicale",
+      "timp": "zi",
+      "alt": "Raft cu colecție organizată de CD-uri muzicale",
+      "licenta": "CC-BY",
+      "autor": "Mick Haupt",
+      "sursa": "https://unsplash.com/photos/cd-collection-shelf-eQ2Z9ay9Wws", 
+      "url_licenta": "https://creativecommons.org/licenses/by/4.0/",
+      "autor_url": "https://unsplash.com/@rocinante_11"
+    },
+    {
+      "cale_relativa": "boxe_monitor.jpg",
+      "nume": "Boxe Monitor",
+      "descriere": "Sistem de monitorizare audio pentru studiouri și săli de concert",
+      "timp": "zi",
+      "alt": "Pair de boxe monitor profesionale pe standuri",
+      "licenta": "CC0",
+      "autor": null,
+      "sursa": "https://unsplash.com/photos/studio-monitors-speakers",
+      "url_licenta": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "cale_relativa": "mixer_audio.jpg",
+      "nume": "Mixer Audio",
+      "descriere": "Consolă de mixaj digitală pentru producție muzicală avansată",
+      "timp": "zi",
+      "alt": "Mixer audio digital cu faders și butoane de control",
+      "licenta": "CC0",
+      "autor": null,
+      "sursa": "https://pexels.com/photo/audio-mixer-console-studio",
+      "url_licenta": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "cale_relativa": "vinyl_collection.jpg",
+      "nume": "Colecție Viniluri",
+      "descriere": "Arhivă impresionantă de discuri de vinil sortate pe genuri",
+      "timp": "zi",
+      "alt": "Bibliotecă mare cu viniluri organizate alfabetic",
+      "licenta": "public-domain",
+      "autor": null,
+      "sursa": "https://commons.wikimedia.org/wiki/File:Vinyl_record_collection.jpg",
+      "url_licenta": "https://en.wikipedia.org/wiki/Public_domain"
+    },
+    {
+      "cale_relativa": "headphones_pro.jpg",
+      "nume": "Căști Profesionale",
+      "descriere": "Căști de monitorizare pentru audiofili și producători muzicali",
+      "timp": "dimineata",
+      "alt": "Căști audio profesionale cu design circumaural",
+      "licenta": "CC-BY",
+      "autor": "C D-X",
+      "sursa": "https://unsplash.com/photos/professional-headphones-PDX_a_82obo",
+      "url_licenta": "https://creativecommons.org/licenses/by/4.0/",
+      "autor_url": "https://unsplash.com/@cdx2"
+    },
+    {
+      "cale_relativa": "turntable_dj.jpg",
+      "nume": "Turntable DJ",
+      "descriere": "Platină pentru DJ-i profesioniști cu control de pitch precis",
+      "timp": "zi",
+      "alt": "Platină DJ cu disc de vinil și braț de ton adjustabil",
+      "licenta": "CC0",
+      "autor": null,
+      "sursa": "https://unsplash.com/photos/dj-turntable-vinyl-music",
+      "url_licenta": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "cale_relativa": "tape_deck.jpg",
+      "nume": "Deck Casete",
+      "descriere": "Deck de înregistrare și redare pentru casete audio analogice",
+      "timp": "zi",
+      "alt": "Deck pentru casete cu butoane de control și display analog",
+      "licenta": "CC0",
+      "autor": null,
+      "sursa": "https://pixabay.com/photos/tape-deck-vintage-audio-player",
+      "url_licenta": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "cale_relativa": "sound_system.jpg",
+      "nume": "Sistem Audio",
+      "descriere": "Sistem complet Hi-Fi pentru experiențe sonore superioare",
+      "timp": "dimineata", 
+      "alt": "Sistem audio Hi-Fi complet cu toate componentele",
+      "licenta": "public-domain",
+      "autor": null,
+      "sursa": "https://commons.wikimedia.org/wiki/File:Audio_system_stereo.jpg",
+      "url_licenta": "https://en.wikipedia.org/wiki/Public_domain"
+    }
+  ]
+}

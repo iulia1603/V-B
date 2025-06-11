@@ -73,19 +73,9 @@ body {
 .page-container {
     padding-left: var(--margini-pagina);
     padding-right: var(--margini-pagina);
-    max-width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
     transition: padding 0.3s ease-in-out;
-}
-
-.despre-main {
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: var(--culoare-fundal);
-    text-align: center;
-    max-width: 1200px;
 }
 
 /* Layout grid similar cu index.html, dar cu o singură zonă principală */
@@ -97,16 +87,9 @@ body {
         "header"
         "zona-despre"
         "footer";
+    max-width: 1200px;
     margin: 0 auto;
-    max-width: 100%;
-    width: 100%;
     transition: gap 0.3s ease-in-out;
-}
-
-header, .despre-noi {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box; /* Important pentru a include padding și border în lățime */
 }
 
 header {
@@ -125,10 +108,7 @@ header {
     background-color: var(--culoare-zona1);
     border-radius: var(--raza-border);
     box-shadow: var(--umbra-normala);
-    /* Elimină orice proprietate width dacă există */
-    max-width: 100%; /* Adaugă această linie */
 }
-
 
 footer {
     grid-area: footer;
@@ -246,8 +226,17 @@ footer {
 
 /* Media queries pentru ecrane mai mici */
 
-@media screen and (max-width: 768px) {
-    .despre-noi {
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .page-container {
+        padding-left: var(--margini-pagina-tablet);
+        padding-right: var(--margini-pagina-tablet);
+    }
+    
+    #grid-pagina {
+        gap: var(--spatiu-grid-tablet);
+    }
+    
+    header, .despre-noi, footer {
         padding: var(--padding-zona-tablet);
     }
     
@@ -265,7 +254,16 @@ footer {
 }
 
 @media screen and (max-width: 480px) {
-    .despre-noi {
+    .page-container {
+        padding-left: var(--margini-pagina-mobil);
+        padding-right: var(--margini-pagina-mobil);
+    }
+    
+    #grid-pagina {
+        gap: var(--spatiu-grid-mobil);
+    }
+    
+    header, .despre-noi, footer {
         padding: var(--padding-zona-mobil);
     }
     
@@ -277,15 +275,3 @@ footer {
         height: 300px;
     }
 }
-
-@media screen and (max-width: 1200px), 
-       screen and (max-width: 768px), 
-       screen and (max-width: 480px) {
-    .despre-noi {
-        width: 100%;
-        max-width: 100%;
-    }
-}
-
-/* Asigură-te că body și alte elemente au aceleași proprietăți ca în index */
-

@@ -51,6 +51,9 @@
     --iframe3: #d5f7f7;
     --iframe4: #4da6a6;
     
+    /* Culori pentru linkuri */
+    --culoare-link-vizitat: #544efa;
+    
     /* Borduri si umbre */
     --raza-border: 10px;
     --umbra-normala: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -88,6 +91,7 @@ body {
     grid-template-areas: 
         "header header header header"
         "zona1 zona1 zona1 zona1"
+        "galerie-statica galerie-statica galerie-statica galerie-statica"
         "zona8 zona8 zona8 zona8"
         "zona3 zona2 zona2 zona4"
         "zona5 zona6 zona7 zona7"
@@ -114,6 +118,11 @@ header {
     background-color: var(--culoare-zona1);
     border-radius: var(--raza-border);
     box-shadow: var(--umbra-normala);
+}
+
+#galerie-statica {
+    grid-area: galerie-statica;
+    /* Nu adăugăm padding aici pentru că .galerie-container îl are deja */
 }
 
 #zona2 {
@@ -216,6 +225,109 @@ p {
     margin-bottom: var(--spatiu-sm);
 }
 
+/* ========== STILIZARE LINKURI ========== */
+
+/* Stilizare generală pentru toate linkurile */
+a {
+    color: var(--culoare-primara);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+/* Linkurile vizitate vor avea o culoare diferită */
+a:visited {
+    color: var(--culoare-link-vizitat);
+}
+
+/* Hover pentru toate linkurile */
+a:hover {
+    color: var(--culoare-accent);
+    text-decoration: underline;
+}
+
+/* Linkurile externe vor avea generat cu ajutorul unui pseudoelement ::before cu simbolul ↗ 
+   cu font-size cu 50% mai mare față de dimensiunea fontului linkului */
+a[href^="http"]::before {
+    content: "↗";
+    margin-right: 0.3em;
+    font-size: 1.5em; /* 50% mai mare decât textul linkului */
+    line-height: 0;
+    position: relative;
+    top: 0.1em;
+    color: var(--culoare-primara);
+}
+
+/* La aducerea cursorului pe un link extern, simbolul își va schimba culoarea */
+a[href^="http"]:hover::before {
+    color: var(--culoare-accent);
+}
+
+/* La aducerea cursorului pe un link din conținutul paginii (nu din meniu) */
+main a {
+    /* O pată de culoare va crește din centru - implementată ca background cu gradient radial */
+    background: radial-gradient(
+        circle at center,
+        var(--culoare-primara) 0%,
+        var(--culoare-primara) 40%,
+        transparent 80%,
+        transparent 100%
+    );
+    background-position: center;
+    background-size: 0; /* Dimensiune 0 inițial */
+    /* Tranziție pentru efectul de creștere a petei de culoare */
+    transition: background-size 0.4s ease, color 0.4s ease;
+}
+
+/* La hover, imaginea de background crește la 100% */
+main a:hover {
+    background-size: 100% 100%; /* Crește la 100% */
+    color: white; /* Schimbă culoarea textului pentru contrast */
+    text-decoration: none;
+    padding: 0.2em 0.4em;
+    border-radius: 0.4em;
+}
+
+/* La click pe un link din pagină (:active), va apărea un border în jurul lui */
+main a:active,
+section a:active,
+article a:active,
+div a:active,
+p a:active,
+li a:active,
+footer a:active,
+address a:active {
+    border: 2px solid black !important;
+    border-radius: 4px !important;
+    padding: 0 3px !important;
+}
+
+/* Excepții pentru linkurile din navigație - să nu se aplice stilurile de mai sus */
+nav a,
+nav a:visited,
+nav a:hover,
+nav a:active,
+.main-nav a,
+.main-nav a:visited,
+.main-nav a:hover,
+.main-nav a:active {
+    /* Resetează toate stilurile personalizate pentru linkurile din navigație */
+    background: none !important;
+    background-size: auto !important;
+    border: none !important;
+    padding: inherit !important;
+    border-radius: inherit !important;
+}
+
+/* Resetare pseudoelemente pentru navigație */
+nav a::before,
+.main-nav a::before {
+    display: none !important;
+}
+
+/* ========== SFÂRȘIT STILIZARE LINKURI ========== */
+
 /* Stilizare iconuri */
 .fa-record-vinyl {
     margin-right: var(--spatiu-xs);
@@ -292,19 +404,6 @@ p {
     gap: var(--spatiu-xl);
     justify-items: center;
     align-items: center;
-}
-
-/* Stiluri pentru linkuri */
-a {
-    color: var(--culoare-primara);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    font-weight: 500;
-}
-
-a:hover {
-    color: var(--culoare-accent);
-    text-decoration: underline;
 }
 
 /* Stiluri pentru liste */
@@ -660,6 +759,7 @@ img, video, iframe, embed {
         grid-template-areas: 
             "header header"
             "zona1 zona1"
+            "galerie-statica galerie-statica"
             "zona8 zona8"
             "zona3 zona4"
             "zona2 zona2"
@@ -711,6 +811,7 @@ img, video, iframe, embed {
         grid-template-areas: 
             "header"
             "zona1"
+            "galerie-statica"
             "zona8"
             "zona3"
             "zona2"

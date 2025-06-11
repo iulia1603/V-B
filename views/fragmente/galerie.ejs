@@ -1,0 +1,81 @@
+<section id="galerie-statica" class="galerie-container">
+    <h2><i class="fas fa-images"></i> Galeria Noastră</h2>
+    <p class="galerie-descriere">
+        Descoperă colecția noastră de echipamente audio și muzică. 
+        Imaginile se actualizează în funcție de momentul zilei pentru o experiență personalizată.
+    </p>
+    
+    <div class="galerie-grid">
+        <!-- ========== LOGICA PENTRU AFIȘAREA MESAJULUI CÂND NU SUNT IMAGINI ========== -->
+        <% if (imagini && imagini.length > 0) { %>
+            <!-- DACĂ SUNT IMAGINI DISPONIBILE, LE AFIȘEAZĂ -->
+            <% imagini.forEach(function(imagine, index) { %>
+                <figure class="galerie-item" data-index="<%= index %>">
+                    <picture>
+                        <!-- Sursă pentru ecrane mari (peste 1024px) - IMAGINEA MICĂ GENERATĂ CU SHARP -->
+                        <source media="(min-width: 1024px)" 
+                                srcset="<%= imagine.cale_mica %>">
+                        
+                        <!-- Sursă pentru ecrane medii (768px - 1023px) - IMAGINEA MICĂ GENERATĂ CU SHARP -->
+                        <source media="(min-width: 768px)" 
+                                srcset="<%= imagine.cale_mica %>">
+                        
+                        <!-- Sursă pentru ecrane mici (sub 768px) - IMAGINEA MICĂ GENERATĂ CU SHARP -->
+                        <img src="<%= imagine.cale_mica %>" 
+                             alt="<%= imagine.alt %>"
+                             title="<%= imagine.descriere %>"
+                             class="galerie-imagine"
+                             loading="lazy">
+                    </picture>
+                    
+                    <figcaption class="galerie-caption">
+                        <span class="galerie-nume"><%= imagine.nume %></span>
+                        <span class="galerie-descriere-text"><%= imagine.descriere %></span>
+                        
+                        <!-- ========== ATRIBUIREA PENTRU LICENȚE CC-BY ========== -->
+                        <% if (imagine.licenta === 'CC-BY' && imagine.autor) { %>
+                            <div class="galerie-atribuire">
+                                <p class="licenta-info">
+                                    <i class="fas fa-creative-commons"></i>
+                                    <small>
+                                        Fotografie de 
+                                        <% if (imagine.autor_url) { %>
+                                            <a href="<%= imagine.autor_url %>" target="_blank" rel="noopener"><%= imagine.autor %></a>
+                                        <% } else { %>
+                                            <strong><%= imagine.autor %></strong>
+                                        <% } %>
+                                        • Licență: <a href="<%= imagine.url_licenta %>" target="_blank" rel="noopener">CC BY 4.0</a>
+                                        • <a href="<%= imagine.sursa %>" target="_blank" rel="noopener">Sursă</a>
+                                    </small>
+                                </p>
+                            </div>
+                        <% } %>
+                        <!-- ========== SFÂRȘITUL ATRIBUIRII ========== -->
+                    </figcaption>
+                </figure>
+            <% }); %>
+        <% } else { %>
+            <!-- DACĂ NU SUNT IMAGINI, AFIȘEAZĂ MESAJUL DE EROARE -->
+            <div class="galerie-goala">
+                <p>Nu există imagini disponibile pentru acest moment al zilei.</p>
+                <p>Reveniți mai târziu pentru a vedea colecția actualizată!</p>
+            </div>
+        <% } %>
+        <!-- ========== SFÂRȘITUL LOGICII ========== -->
+    </div>
+    
+    <div class="galerie-info">
+        <!-- ========== AFIȘAREA NUMĂRULUI DE IMAGINI ========== -->
+        <p><strong>Afișăm <%= imagini ? imagini.length : 0 %> imagini</strong> 
+           pentru perioada curentă a zilei.</p>
+        <!-- ========== SFÂRȘITUL AFIȘĂRII NUMĂRULUI ========== -->
+        <p class="galerie-program">
+            <i class="fas fa-clock"></i> 
+            <strong>Dimineața (5:00-12:00):</strong> Echipamente de start și colecții basics<br>
+            <i class="fas fa-sun"></i> 
+            <strong>Ziua (12:00-20:00):</strong> Echipamente profesionale și colecții premium<br>
+            <i class="fas fa-moon"></i> 
+            <strong>Noaptea (20:00-5:00):</strong> Echipamente de studio și colecții rare
+        </p>
+    </div>
+</section>
