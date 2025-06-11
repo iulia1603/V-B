@@ -14,9 +14,11 @@
     --umbra-mare: 0 6px 12px rgba(0, 0, 0, 0.15);
     --font-titlu: 'Poppins', sans-serif;
     --font-text: 'Montserrat', sans-serif;
+    --spatiu-sm: 0.75rem;
     --spatiu-md: 1.5rem;
     --spatiu-lg: 2rem;
     --spatiu-xl: 3rem;
+    --spatiu-xs: 0.5rem;
     
     /* Variabile specifice pentru galerie */
     --galerie-gap: 1.5rem;
@@ -130,7 +132,7 @@
     max-width: 400px;
     background-color: var(--culoare-zona1);
     border-radius: var(--galerie-item-radius);
-    overflow: hidden;
+    overflow: visible; /* MODIFICAT: permite ieșirea din container la hover */
     box-shadow: var(--umbra-normala);
     transition: all var(--galerie-transition-duration) ease;
     position: relative;
@@ -148,15 +150,10 @@
 }
 
 /* Efecte la hover pe întregul item */
-.galerie-item:hover {
-    transform: scale(var(--galerie-hover-scale)) rotate(360deg);
-    box-shadow: var(--galerie-shadow-hover);
+.galerie-item:hover .galerie-imagine{
+    transform: rotate(360deg) scale(var(--galerie-hover-scale));
+    border-radius: 25%; /* Rotunjire la hover */
     z-index: 10;
-    border-color: var(--culoare-primara);
-}
-
-.galerie-item:hover .galerie-imagine {
-    border-radius: 50%; /* Rotunjire la hover */
 }
 
 /* Caption pentru imagine */
@@ -239,7 +236,6 @@
     }
 }
 /* ========== SFÂRȘITUL STILURILOR PENTRU ATRIBUIRE ========== */
-
 
 /* Stiluri pentru secțiunea de informații */
 .galerie-info {
